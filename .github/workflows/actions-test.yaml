@@ -10,5 +10,6 @@ jobs:
   print-hello:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Username: ${{ github.event.inputs.username }}"
-      - run: echo "Actor's username: ${{ github.actor }}"
+      - run: |
+          echo "Username: ${{ github.event.inputs.username }}"
+          echo  "Actor's username: ${{ github.actor }}"
