@@ -1,8 +1,15 @@
 name: actions-test
 on: 
-   workflow_dispatch
+   workflow_dispatch:
+     inputs:
+       userName:
+         description: "Username"
+         required: true
+         default: "Diablo"
 jobs:
   print-hello:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello, world"
+      - run: echo "Username: ${{ github.event.inputs.username }}"
+      - run: echo "Actor's username: ${{ github.actor }}"
+
