@@ -9,7 +9,7 @@ jobs:
         with:
           repository: "Manoj-07/argocd-example-apps.git"
           ref: "master"
-      - name: "Sync ArgoCD Application"
+      - name: Sync ArgoCD Application
         uses: omegion/argocd-app-actions@master
         with:
           address: "argocd-manoj.com"
