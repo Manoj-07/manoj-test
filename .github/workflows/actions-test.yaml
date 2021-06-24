@@ -1,15 +1,17 @@
-name: actions-test
-
-on: 
-  push
-
-env:
-  TEST_ENV: ${{ secrets.TEST_SECRET }}
-
+name: "ArgoCD sync"
+on: "push"
 jobs:
-  print-hello:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Test secret: ${{ secrets.TEST_SECRET }}"
-          echo "Test secret: ${{ env.TEST_ENV }}"
+      - name: "Clone reposiory"
+        uses: actions/checkout@v2
+        with:
+          repository: "Manoj-07/argocd-example-apps.git"
+          ref: "master"
+      - name: "Sync ArgoCD Application"
+        uses: omegion/argocd-app-actions@master
+        with:
+          address: "argocd-manoj.com"
+          token: ${{ secrets.ARGOCD_TOKEN }}
+          appName: "guestbook"
