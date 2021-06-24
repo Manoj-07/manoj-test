@@ -1,17 +1,10 @@
-name: "ArgoCD sync"
-on: "push"
+name: actions-test
+on: 
+  create
 jobs:
-  build:
+  print-hello:
     runs-on: ubuntu-latest
     steps:
-      - name: "Clone reposiory"
-        uses: actions/checkout@v2
-        with:
-          repository: "Manoj-07/argocd-example-apps.git"
-          ref: "master"
-      - name: Sync ArgoCD Application
-        uses: omegion/argocd-app-actions@master
-        with:
-          address: "argocd-manoj.com"
-          token: ${{ secrets.ARGOCD_TOKEN }}
-          appName: "guestbook"
+      - run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Actor's username: ${{ github.actor }}"
